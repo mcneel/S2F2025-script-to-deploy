@@ -12,4 +12,4 @@ This repository contains the files for the workshop and the GitHub CI/CD pipelin
 
 | <img src="doc/img/ehsan.jpg" alt="ehsan" width="200" height="200"/> | <img src="doc/img/menno.jpg" alt="menno" width="200" height="200"/> | 
 | ------------- | ------------- |
-|[Ehsan Iran-Nejad (McNeel)](https://www.linkedin.com/in/eirannejad/)|[Menno Deij - van Rijswijk](https://www.linkedin.com/in/mennodeij)|
+|[Ehsan Iran-Nejad](https://www.linkedin.com/in/eirannejad/)|[Menno Deij - van Rijswijk](https://www.linkedin.com/in/mennodeij)|
