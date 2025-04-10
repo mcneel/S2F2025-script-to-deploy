@@ -34,8 +34,8 @@ jobs:
           Get-ChildItem workshop-*.yak
           $path=(Get-ChildItem workshop-*.yak)
           $file=$path.Name
-          "file=$file" >> env:GITHUB_OUTPUT
-          "path=$path" >> env:GITHUB_OUTPUT
+          "file=$file" >> $env:GITHUB_OUTPUT
+          "path=$path" >> $env:GITHUB_OUTPUT
           yak install $file
 
 # todo: -name: test
