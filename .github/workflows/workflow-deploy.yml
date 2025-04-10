@@ -1,0 +1,67 @@
+# workflow to deploy the compiled plugin to the package manager. 
+# This workflow is triggered manually.
+
+name : Deploy
+on : workflow_dispatch # press button to do this
+
+env:
+  RETENTION_DAYS: 15
+  YAK_TOKEN: ${{ secrets.YAK_TOKEN }}
+
+jobs:
+
+  check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Check if we have the YAK_TOKEN
+      run: |
+        if [ -z ${{env.YAK_TOKEN}}" ] ; then
+          echo "YAK_TOKEN not set or empty"
+          exit 1
+        else
+          echo "YAK_TOKEN set and not empty"
+        fi
+
+  build:
+    runs-on: windows-latest
+    needs: check
+    
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Install Rhino
+        uses: mcneel/setup-rhino3d@v2
+        id: setup_rhino
+        with:
+          email-address: ${{ secrets.EMAIL_ADDRESS }}
+
+      - name: Add to PATH
+        run: |
+          "C:\Program Files\Rhino 8\System\" >> $env:GITHUB_PATH
+
+      - name: Build rhproj
+        id: buildproj
+        run: |
+          rhinocode project build D:\a\S2F2025-script-to-deploy\S2F2025-script-to-deploy\source\workshop.rhproj
+          Set-Location -Path D:\a\S2F2025-script-to-deploy\S2F2025-script-to-deploy\source\build\rh8
+          Get-ChildItem workshop-*.yak
+          $path=(Get-ChildItem workshop-*.yak)
+          $file=$path.Name
+          "file=$file" >> $env:GITHUB_OUTPUT
+          "path=$path" >> $env:GITHUB_OUTPUT
+
+      - name: artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          path: ${{ steps.buildproj.outputs.path }}
+          name: ${{ steps.buildproj.outputs.file }}
+          retention-days: ${{ env.RETENTION_DAYS }}
+
+      - name: push to yak
+        run: |
+          Set-Location -Path D:\a\S2F2025-script-to-deploy\S2F2025-script-to-deploy\source\build\rh8
+          yak push ${{ steps.buildproj.outputs.file }}          
