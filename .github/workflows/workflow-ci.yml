@@ -40,7 +40,7 @@ jobs:
 
 # todo: -name: test
 
-      - name: 🎁 artifact
+      - name: artifact
         uses: actions/upload-artifact@v4.4.3
         with:
           path: ${{ steps.buildproj.outputs.path }}
