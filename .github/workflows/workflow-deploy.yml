@@ -18,7 +18,7 @@ jobs:
 
     - name: Check if we have the YAK_TOKEN
       run: |
-        if [ -z ${{env.YAK_TOKEN}}" ] ; then
+        if [ -z "${{env.YAK_TOKEN}}" ] ; then
           echo "YAK_TOKEN not set or empty"
           exit 1
         else
