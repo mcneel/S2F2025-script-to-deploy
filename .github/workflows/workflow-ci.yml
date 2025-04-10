@@ -1,0 +1,49 @@
+# workflow build and test the plugin. 
+# This workflow is triggered on push and pull requests.
+
+name: CI
+on: [ push, pull_request ]
+
+env:
+  RHINO_TOKEN: ${{ secrets.RHINO_TOKEN }} # needed to run the rhinocode CLI
+  RETENTION_DAYS: 15
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Install Rhino
+        uses: mcneel/setup-rhino3d@v2
+        id: setup_rhino
+        with:
+          email-address: ${{ secrets.EMAIL_ADDRESS }}
+
+      - name: Add to PATH
+        run: |
+          "C:\Program Files\Rhino 8\System\" >> $env:GITHUB_PATH
+
+      - name: Build rhproj
+        id: buildproj
+        run: |
+          rhinocode project build D:\a\S2F2025-script-to-deploy\S2F2025-script-to-deploy\source\workshop.rhproj
+          Set-Location -Path D:\a\S2F2025-script-to-deploy\S2F2025-script-to-deploy\source\build\rh8
+          Get-ChildItem workshop-*.yak
+          $path=(Get-ChildItem workshop-*.yak)
+          $file=$path.Name
+          "file=$file" >> env:GITHUB_OUTPUT
+          "path=$path" >> env:GITHUB_OUTPUT
+          yak install $file
+
+# todo: -name: test
+
+      - name: 🎁 artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          path: ${{ steps.buildproj.outputs.path }}
+          name: ${{ steps.buildproj.outputs.file }}
+          retention-days: ${{ env.RETENTION_DAYS }}
+    
