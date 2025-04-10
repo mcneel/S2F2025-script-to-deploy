@@ -14,7 +14,7 @@
       "name": "Menno",
       "company": "Example Co,"
     },
-    "description": "Shape to Fabrication 2025 Workshop \u0022Script to Deploy\u0022",
+    "description": "Shape to Fabrication 2025 Workshop Script to Deploy",
     "copyright": "Copyright \u00A9 2025 Menno",
     "license": "MIT",
     "url": "https://github.com/mcneel/S2F2025-script-to-deploy"
@@ -42,6 +42,25 @@
       },
       "title": "PaintHeights",
       "uri": "02_Command/PaintHeights.py"
+    },
+    {
+      "id": "c9d4f927-b6db-403b-8b22-0a806e4526cd",
+      "language": {
+        "id": "mcneel.roslyn.csharp",
+        "version": "9.0.*"
+      },
+      "title": "PaintHeights_cs",
+      "uri": "02_Command/PaintHeights.cs"
+    },
+    {
+      "type": "components",
+      "id": "c5eeb72d-48aa-4cf2-b86c-e007d9e70503",
+      "language": {
+        "id": "*.gh1.grasshopper",
+        "version": "1.*.*"
+      },
+      "title": "PaintAngles.gh",
+      "uri": "03_Component/PaintAngles.gh"
     }
   ]
 }
