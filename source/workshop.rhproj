@@ -1,0 +1,47 @@
+{
+  "host": {
+    "name": "Rhino3D",
+    "version": "8.19.25097\u002B18001",
+    "os": "windows",
+    "arch": "x64"
+  },
+  "id": "16b7813f-4c45-4332-94a6-b60bfbdbb53a",
+  "identity": {
+    "name": "workshop",
+    "version": "0.1",
+    "publisher": {
+      "email": "menno@example.com",
+      "name": "Menno",
+      "company": "Example Co,"
+    },
+    "description": "Shape to Fabrication 2025 Workshop \u0022Script to Deploy\u0022",
+    "copyright": "Copyright \u00A9 2025 Menno",
+    "license": "MIT",
+    "url": "https://github.com/mcneel/S2F2025-script-to-deploy"
+  },
+  "settings": {
+    "buildPath": "build/",
+    "buildTarget": {
+      "host": {
+        "name": "Rhino3D",
+        "version": "8"
+      },
+      "title": "Rhino3D (8.*)",
+      "slug": "rh8"
+    },
+    "publishTarget": {
+      "title": "McNeel Yak Server"
+    }
+  },
+  "codes": [
+    {
+      "id": "eeea6283-6692-4699-ad16-16c02fa62f17",
+      "language": {
+        "id": "mcneel.pythonnet.python",
+        "version": "3.9.10"
+      },
+      "title": "PaintHeights",
+      "uri": "02_Command/PaintHeights.py"
+    }
+  ]
+}

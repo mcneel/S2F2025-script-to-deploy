@@ -32,7 +32,15 @@ class Brush(GetPoint):
         self._minValue = 1.0
         self._mouseDown = False
 
-        self._ease = Quartic(Vector(self._falloff - self._size, self._strength))
+        # this does not work
+        #self._ease = Quartic(Vector(self._falloff - self._size, self._strength));
+        
+        # so, do this:
+        v = Vector()
+        v.x = self._falloff - self._size;
+        v.y = self._strength;
+
+        self._ease = Quartic(v)
 
         # Options with range
         self.optsizedouble = OptionDouble(self._size, 1.0, 100.0)
@@ -56,7 +64,11 @@ class Brush(GetPoint):
                     self._falloff = self.optfalloffdouble.CurrentValue
                 elif opt.Index == self.strengthIndex:
                     self._strength = self.optstrengthdouble.CurrentValue
-                self._ease = Quartic(Vector(self._falloff - self._size, self._strength));
+                # update the easing function
+                v = Vector()
+                v.x = self._falloff - self._size;
+                v.y = self._strength;
+                self._ease.Scale = v;
 
     def OnMouseMove(self, e):
         self._mouseDown = e.LeftButtonDown
