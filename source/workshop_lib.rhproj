@@ -1,0 +1,69 @@
+{
+  "host": {
+    "name": "Rhino3D",
+    "version": "8.19.25097\u002B18001",
+    "os": "windows",
+    "arch": "x64"
+  },
+  "id": "16b7813f-4c45-4332-94a6-b60bfbdbb53a",
+  "identity": {
+    "name": "workshop_lib",
+    "version": "0.1",
+    "publisher": {
+      "email": "menno@example.com",
+      "name": "Menno",
+      "company": "Example Co,"
+    },
+    "description": "Shape to Fabrication 2025 Workshop Script to Deploy",
+    "copyright": "Copyright \u00A9 2025 Menno",
+    "license": "MIT",
+    "url": "https://github.com/mcneel/S2F2025-script-to-deploy"
+  },
+  "settings": {
+    "buildPath": "build-lib/",
+    "buildTarget": {
+      "host": {
+        "name": "Rhino3D",
+        "version": "8"
+      },
+      "title": "Rhino3D (8.*)",
+      "slug": "rh8"
+    },
+    "publishTarget": {
+      "title": "McNeel Yak Server"
+    }
+  },
+  "codes": [
+    {
+      "id": "e5bbdcf6-9ba7-4187-a23d-02d17fd1a1e6",
+      "language": {
+        "id": "mcneel.roslyn.csharp",
+        "version": "9.0.*"
+      },
+      "title": "PaintHeights_Lib",
+      "uri": "04_Libraries/PaintHeights_Lib.cs"
+    },
+    {
+      "type": "components",
+      "id": "c5eeb72d-48aa-4cf2-b86c-e007d9e70503",
+      "language": {
+        "id": "*.gh1.grasshopper",
+        "version": "1.*.*"
+      },
+      "title": "PaintAngles.gh",
+      "uri": "03_Component/PaintAngles.gh"
+    }
+  ],
+  "libraries": [
+    {
+      "type": "uri",
+      "library": {
+        "base": "04_Libraries/BrushTools/",
+        "language": {
+          "id": "*.*.csharp",
+          "version": "*.*.*"
+        }
+      }
+    }
+  ]
+}

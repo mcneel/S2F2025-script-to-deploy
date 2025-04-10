@@ -1,3 +1,4 @@
 *.rhl
 *.3dmbak
 build/
+build-lib/
